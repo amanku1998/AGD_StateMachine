@@ -1,4 +1,6 @@
-namespace StatePattern.Enemy
+using StatePattern.Enemy;
+
+namespace StatePattern.StateMachine
 {
     public interface IState
     {

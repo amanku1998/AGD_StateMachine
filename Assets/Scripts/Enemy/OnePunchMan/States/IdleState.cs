@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using StatePattern.StateMachine;
 using UnityEngine;
 
 namespace StatePattern.Enemy
@@ -21,6 +20,8 @@ namespace StatePattern.Enemy
             {
                 if (Owner.GetType() == typeof(OnePunchManController))
                     stateMachine.ChangeState(States.ROTATING);
+                else
+                    stateMachine.ChangeState(States.PATROLLING);
             }
                 
         }
