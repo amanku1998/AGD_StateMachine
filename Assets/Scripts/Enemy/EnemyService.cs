@@ -60,12 +60,12 @@ namespace StatePattern.Enemy
                 case EnemyType.PatrolMan:
                     enemy = new PatrolManController(enemyScriptableObject);
                     break;
-                case EnemyType.Hitman:
+                case EnemyType.HitMan:
                     enemy = new HitmanController(enemyScriptableObject);
                     break;
-                //case EnemyType.Robot:
-                    //enemy = new RobotController(enemyScriptableObject);
-                    //break;
+                case EnemyType.CloneMan:
+                    enemy = new CloneManController(enemyScriptableObject);
+                    break;
                 default:
                     enemy = new EnemyController(enemyScriptableObject);
                     break;
@@ -73,6 +73,8 @@ namespace StatePattern.Enemy
 
             return enemy;
         }
+
+        public void AddEnemy(EnemyController enemy) => activeEnemies.Add(enemy);
 
         public void EnemyDied(EnemyController deadEnemy)
         {

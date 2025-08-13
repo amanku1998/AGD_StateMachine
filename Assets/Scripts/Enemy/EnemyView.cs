@@ -1,6 +1,7 @@
 ﻿using StatePattern.Main;
 using StatePattern.Player;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +14,7 @@ namespace StatePattern.Enemy
         private SphereCollider rangeTriggerCollider;
         [SerializeField] private SpriteRenderer detectableRange;
         [SerializeField] private ParticleSystem muzzleFlash;
+        [SerializeField] private List<EnemyColor> enemyColors;
         [SerializeField] private GameObject bloodStain;
         [SerializeField] private SpriteRenderer enemyGraphic;
 
@@ -82,5 +84,31 @@ namespace StatePattern.Enemy
             Destroy(gameObject);
         }
 
+        public void ChangeColor(EnemyColorType colorType) => enemyGraphic.color = enemyColors.Find(item => item.Type == colorType).Color;
+
+        public void SetDefaultColor(EnemyColorType colorType)
+        {
+            EnemyColor coloToSetAsDefault = new EnemyColor();
+            coloToSetAsDefault.Type = EnemyColorType.Default;
+            coloToSetAsDefault.Color = enemyColors.Find(item => item.Type == colorType).Color;
+
+            enemyColors.Remove(enemyColors.Find(item => item.Type == EnemyColorType.Default));
+            enemyColors.Add(coloToSetAsDefault);
+        }
+
+    }
+
+    [System.Serializable]
+    public struct EnemyColor
+    {
+        public EnemyColorType Type;
+        public Color Color;
+    }
+
+    public enum EnemyColorType
+    {
+        Default,
+        Vulnerable,
+        Clone
     }
 }
