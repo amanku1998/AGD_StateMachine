@@ -21,11 +21,14 @@ namespace StatePattern.UI
         [SerializeField] private GameplayUIView gameplayView;
         [SerializeField] private CameraShake cameraShake;
 
-        private void Start()
+        private void Awake()
         {
             levelSelectionController = new LevelSelectionUIController(levelSelectionView, levelButtonPrefab);
             levelEndController = new LevelEndUIController(levelEndView);
             gameplayController = new GameplayUIController(gameplayView);
+        }
+        private void Start()
+        {
             SubscribeToEvents();
         }
 
